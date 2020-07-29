@@ -6,4 +6,5 @@ end
 
 ActiveRecord::Base.logger = Logger.new(STDOUT)
 
+use ProjectsController
 run ApplicationController
