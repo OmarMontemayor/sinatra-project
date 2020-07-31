@@ -35,9 +35,10 @@ class ProjectsController < ApplicationController
 
     #update action
     patch '/projects/:id' do
-        binding.pry
-        #set_project
-
+        params.delete(:_method)
+        set_project
+        @project.update(params)
+        redirect '/projects'
     end
 
     #delete action
