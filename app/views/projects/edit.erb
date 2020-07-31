@@ -1,0 +1,7 @@
+<form action="/projects/<%=@project.id%>" method='post'>
+    <input type="hidden" name="_method" value="PATCH">
+    <label for="job">Edit Project:</label>
+    <input type="text" name="job" id="job" value="<%=@project.job%>">
+    <input type="number" name="budget" id="budget" value="<%=@project.budget%>">
+    <input type="submit" value="Update">
+</form

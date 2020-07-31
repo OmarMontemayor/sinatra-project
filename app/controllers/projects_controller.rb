@@ -19,16 +19,37 @@ class ProjectsController < ApplicationController
 
     #show action
     get '/projects/:id' do
-        @project = current_user.projects.find_by_id(params[:id])
+        set_project
         if @project
             erb :'projects/show'
         else
             redirect '/projects'
         end
     end
+
     #edit action(view for form that will update)
+    get '/projects/:id/edit' do
+        set_project
+        erb :'projects/edit'
+    end
 
     #update action
+    patch '/projects/:id' do
+        binding.pry
+        #set_project
+
+    end
 
     #delete action
+    delete '/projects/:id' do
+        set_project
+        @project.destroy
+        redirect '/projects'
+        #binding.pry
+    end
+
+    private
+    def set_project
+        @project = current_user.projects.find_by_id(params[:id])
+    end
 end

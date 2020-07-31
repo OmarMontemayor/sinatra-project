@@ -2,6 +2,10 @@
 <ol>
     <%@projects.each do |project|%>
         <p><%=project.job%> completed: <%=project.complete%> budget: <%=project.budget%></p>
+        <form action="projects/<%=project.id%>" method='post'>
+            <input type="hidden" name="_method" value="DELETE">
+            <input type="submit" value="❌" style="color:red">
+        </form>
     <%end%>
 </ol>
 

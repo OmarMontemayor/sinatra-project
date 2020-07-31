@@ -6,5 +6,7 @@ end
 
 ActiveRecord::Base.logger = Logger.new(STDOUT)
 
+use Rack::MethodOverride
+
 use ProjectsController
 run ApplicationController
