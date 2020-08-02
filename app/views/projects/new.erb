@@ -1,3 +1,7 @@
+<%if @error%>
+    <p><%=@error%></p>
+<%end%>
+<p><%=@message%></p>
 <form action="/projects" method="post">
     <label for="job">New Project:</label>
     <input type="text" name="job" id="job">
