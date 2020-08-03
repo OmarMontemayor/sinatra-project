@@ -27,6 +27,16 @@
         window.attachEvent("onload", function(){CFInstall.check({mode:"overlay"})})
       </script>
     <![endif]-->
-    <a href="/projects/new">New Project</a>
+    <%if current_user%>
+      <a href="/projects/new">New Project</a>
+      <a href="/projects">All Projects</a>
+      <form action="/logout" method='post'>
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="submit" value="Logout">
+      </form>
+    <%else%>
+      <a href="/login">Login</a>
+      <a href="/signup">Sign Up</a>
+    <%end%>
   </body>
 </html>

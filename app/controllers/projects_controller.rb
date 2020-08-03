@@ -1,8 +1,13 @@
 class ProjectsController < ApplicationController
     #index action
     get '/projects' do
-        @projects = current_user.projects
-        erb :'projects/index'
+        if current_user
+            session[:message] = 'hello world'
+            @projects = current_user.projects
+            erb :'projects/index'
+        else
+            redirect '/login'
+        end
     end
 
     #new action(view for form that will create)

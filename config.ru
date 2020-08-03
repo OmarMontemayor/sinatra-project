@@ -9,5 +9,5 @@ ActiveRecord::Base.logger = Logger.new(STDOUT)
 use Rack::MethodOverride
 
 use ProjectsController
-use UsersContoller
+use UsersController
 run ApplicationController
