@@ -6,7 +6,7 @@ class UsersController < ApplicationController
     post '/signup' do
         user = User.create(params)
         session[:user_id] = user.id
-        redirect '/projects'
+        redirect '/projects/new'
     end
 
     get '/login' do
@@ -19,13 +19,13 @@ class UsersController < ApplicationController
             session[:user_id] = user.id
             redirect '/projects'
         else
-            @error = 'invalid credentials'
+            @error = 'INVALID CREDENTIALS'
             erb :'users/login'
         end
     end
 
     delete '/logout' do
         session.destroy
-        redirect '/projects'
+        redirect '/login'
     end
 end

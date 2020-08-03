@@ -1,0 +1,34 @@
+.complete-button {
+    color: green;
+}
+
+nav {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-evenly;
+    border-bottom: 2px solid black;
+    font-family: sans-serif;
+}
+
+.nav-button {
+    display: inline;
+    background: none;
+    border: none;
+    font-size: 1em;
+    text-decoration: none;
+    color:blue
+    
+}
+
+h1 {
+    align-items: center;
+}
+
+a {
+    text-decoration: none;
+    font-family: sans-serif;
+}
+
+.error {
+    color: red;
+}

@@ -1,34 +1,38 @@
 class ProjectsController < ApplicationController
     #index action
     get '/projects' do
-        if current_user
-            session[:message] = 'hello world'
+        if logged_in?
             @projects = current_user.projects
             erb :'projects/index'
         else
+            @error = 'Please login to view your projects'
             redirect '/login'
         end
     end
 
     #new action(view for form that will create)
     get '/projects/new' do
+        redirect_if_not_logged_in
         erb :'/projects/new'
     end
 
     #create action
     post '/projects' do
         project = current_user.projects.build(params)
-        project.save
-        redirect "/projects/#{project.id}"
+        if project.save
+            redirect "/projects/#{project.id}"
+        else
+            erb :'projects/new'
+        end
     end
 
     #show action
     get '/projects/:id' do
-        set_project
-        if @project
+        redirect_if_not_logged_in
+        if set_project
             erb :'projects/show'
         else
-            redirect '/projects'
+            redirect 'welcome' 
         end
     end
 
@@ -51,7 +55,6 @@ class ProjectsController < ApplicationController
         set_project
         @project.destroy
         redirect '/projects'
-        #binding.pry
     end
 
     private

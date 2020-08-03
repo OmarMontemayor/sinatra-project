@@ -1,4 +1,5 @@
 <h2>My Home Projects:</h2>
+
 <ol>
     <%@projects.each do |project|%>
         <p><%=project.job%> completed: <%=project.complete%></p>
@@ -10,7 +11,7 @@
         <form action="projects/<%=project.id%>" method='post'>
             <input type="hidden" name="_method" value="PATCH">
             <input type="hidden" name="complete" value="true">
-            <input type="submit" value="✓" style="color:green">
+            <input type="submit" value="✓" class='complete-button'>
         </form>
         <a href="/projects/<%=project.id%>/edit">Edit Project</a>
     <%end%>
