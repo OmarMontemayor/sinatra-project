@@ -1,7 +1,11 @@
 <h2>My Home Projects:</h2>
-<%if session[:error]%>
+<%if session[:error] && !logged_in?%>
     <p class='error'><%=session[:error]%></p>
 <%end%>
+<%if session[:error2] && logged_in?%>
+    <p class='error'><%=session[:error2]%></p>
+<%end%>
+
 <ol>
     <%@projects.each do |project|%>
         <p><%=project.job%> completed: <%=project.complete%></p>

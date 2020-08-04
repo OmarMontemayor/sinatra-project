@@ -14,6 +14,7 @@ class ProjectsController < ApplicationController
 
     #create action
     post '/projects' do
+        binding.pry
         project = current_user.projects.build(params)
         if project.save
             redirect "/projects/#{project.id}"
@@ -28,7 +29,7 @@ class ProjectsController < ApplicationController
         if set_project
             erb :'projects/show'
         else
-            session[:error] = "That project doesn't exist."
+            session[:error2] = "That project doesn't exist."
             redirect '/projects'
         end
     end

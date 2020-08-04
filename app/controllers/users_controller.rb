@@ -4,12 +4,12 @@ class UsersController < ApplicationController
     end
 
     post '/signup' do
-        user = User.create(params)
-        if user.email == User.find_by(email: params[:email])
+        if !User.find_by(email: params[:email])
+            user = User.create(params)
             session[:user_id] = user.id
             redirect '/projects/new'
         else
-            @error = 'That email already exists.'
+            @error = 'That email already exists'
             erb :'users/signup'
         end
     end
