@@ -5,8 +5,13 @@ class UsersController < ApplicationController
 
     post '/signup' do
         user = User.create(params)
-        session[:user_id] = user.id
-        redirect '/projects/new'
+        if user.email == User.find_by(email: params[:email])
+            session[:user_id] = user.id
+            redirect '/projects/new'
+        else
+            @error = 'That email already exists.'
+            erb :'users/signup'
+        end
     end
 
     get '/login' do
@@ -26,6 +31,6 @@ class UsersController < ApplicationController
 
     delete '/logout' do
         session.destroy
-        redirect '/login'
+        redirect '/'
     end
 end

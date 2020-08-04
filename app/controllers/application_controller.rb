@@ -24,9 +24,9 @@ class ApplicationController < Sinatra::Base
 
     def redirect_if_not_logged_in
       unless logged_in?
-        @error = "Please login or sign up to access this page."
-        redirect '/login'
-      end 
+        session[:error] = 'Please login or sign up to view that page.'
+        redirect '/'
+      end
     end
   end
 end

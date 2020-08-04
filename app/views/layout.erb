@@ -18,7 +18,7 @@
   <nav>
     <%if current_user%>
       <a href="/projects/new" class='nav-button'>New Project</a>
-      <a href="/projects" class='nav-button'>All Projects</a>
+      <a href="/projects" class='nav-button'>My Projects</a>
       <form action="/logout" method='post'>
         <input type="hidden" name="_method" value="DELETE">
         <input type="submit" value="Logout" class='nav-button'>

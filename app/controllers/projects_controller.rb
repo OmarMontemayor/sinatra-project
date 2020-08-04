@@ -1,13 +1,9 @@
 class ProjectsController < ApplicationController
     #index action
     get '/projects' do
-        if logged_in?
-            @projects = current_user.projects
-            erb :'projects/index'
-        else
-            @error = 'Please login to view your projects'
-            redirect '/login'
-        end
+        redirect_if_not_logged_in
+        @projects = current_user.projects
+        erb :'projects/index'
     end
 
     #new action(view for form that will create)
@@ -32,7 +28,8 @@ class ProjectsController < ApplicationController
         if set_project
             erb :'projects/show'
         else
-            redirect 'welcome' 
+            session[:error] = "That project doesn't exist."
+            redirect '/projects'
         end
     end
 
