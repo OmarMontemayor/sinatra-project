@@ -14,7 +14,6 @@ class ProjectsController < ApplicationController
 
     #create action
     post '/projects' do
-        binding.pry
         project = current_user.projects.build(params)
         if project.save
             redirect "/projects/#{project.id}"
