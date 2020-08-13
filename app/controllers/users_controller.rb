@@ -4,6 +4,7 @@ class UsersController < ApplicationController
     end
 
     post '/signup' do
+        
         if !User.find_by(email: params[:email])
             user = User.create(params)
             session[:user_id] = user.id

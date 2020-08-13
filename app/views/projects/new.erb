@@ -1,5 +1,7 @@
-
 <h3>Create a Home Project</h3>
+<%if @error%>
+    <p class='error'><%=@error%></p>
+<%end%>
 <form action="/projects" method="post">
     <label for="job">New Project:</label>
     <input type="text" name="job" id="job">

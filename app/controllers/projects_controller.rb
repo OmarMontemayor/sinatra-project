@@ -14,11 +14,13 @@ class ProjectsController < ApplicationController
 
     #create action
     post '/projects' do
-        project = current_user.projects.build(params)
-        if project.save
-            redirect "/projects/#{project.id}"
+        #binding.pry
+        if params[:job] == "" || params[:budget] == ""
+            @error = "Please fill out the form to create a project."
+            erb :'/projects/new'
         else
-            erb :'projects/new'
+            project = current_user.projects.create(params)
+            redirect "/projects/#{project.id}"
         end
     end
 
@@ -28,15 +30,20 @@ class ProjectsController < ApplicationController
         if set_project
             erb :'projects/show'
         else
-            session[:error2] = "That project doesn't exist."
-            redirect '/projects'
+            @error = "That project doesn't exist."
+            erb :'projects/index'
         end
     end
 
     #edit action(view for form that will update)
     get '/projects/:id/edit' do
-        set_project
-        erb :'projects/edit'
+        redirect_if_not_logged_in
+        if set_project
+            erb :'projects/edit'
+        else
+            session[:error2] = "That project doesn't exist."
+            redirect '/projects'
+        end
     end
 
     #update action
