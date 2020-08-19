@@ -1,6 +1,6 @@
 <h3>Create a Home Project</h3>
-<%if @error%>
-    <p class='error'><%=@error%></p>
+<%if @project && @project.errors%>
+    <p class='error'><%=@project.errors.full_messages.join(". ")%></p>
 <%end%>
 <form action="/projects" method="post">
     <label for="job">New Project:</label>

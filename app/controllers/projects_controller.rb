@@ -15,11 +15,12 @@ class ProjectsController < ApplicationController
     #create action
     post '/projects' do
         #binding.pry
-        if params[:job] == "" || params[:budget] == ""
-            @error = "Please fill out the form to create a project."
+        @project = current_user.projects.create(params)
+        if @project.errors
+            #binding.pry
+            
             erb :'/projects/new'
         else
-            project = current_user.projects.create(params)
             redirect "/projects/#{project.id}"
         end
     end
